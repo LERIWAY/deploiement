@@ -20,7 +20,8 @@ $app->get('/api/hello/{name}', function (Request $request, Response $response, $
 // APi d'authentification générant un JWT
 $app->post('/api/login', function (Request $request, Response $response, $args) {   
     $err=false;
-    $body = $request->getParsedBody();
+    $inputJSON = file_get_contents('php://input');
+    $body = json_decode( $inputJSON, TRUE );
     $login = $body ['login'] ?? "";
     $password = $body ['password'] ?? "";
 
