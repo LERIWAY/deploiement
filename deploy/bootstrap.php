@@ -9,7 +9,7 @@ $conn = array(
 'host' => 'dpg-ceo3oimn6mpoovl02sb0-a',
 'driver' => 'pdo_pgsql',
 'user' => 'webcnamdb_user',
-'password' => 'webcnamdb_user',
+'password' => 'EGhU7MYux8w0qPpq5qYdQWbLR1Wwdu3I',
 'dbname' => 'webcnamdb',
 'port' => '5432'
 );
