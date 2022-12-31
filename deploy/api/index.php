@@ -24,10 +24,10 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     $login = $body ['login'] ?? "";
     $pass = $body ['pass'] ?? "";
 
-    if (!preg_match("/[a-zA-Z0-9]{1,20}/",$login) || empty($login)) {
+    if (!preg_match("/[a-zA-Z0-9]{1,20}/",$login) || !empty($login)) {
         $err = true;
     }
-    if (!preg_match("/[a-zA-Z0-9]{1,20}/",$pass) || empty($pass))  {
+    if (!preg_match("/[a-zA-Z0-9]{1,20}/",$pass) || !empty($pass))  {
         $err=true;
     }
 
