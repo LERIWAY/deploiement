@@ -20,21 +20,20 @@ $app->get('/api/hello/{name}', function (Request $request, Response $response, $
 // APi d'authentification générant un JWT
 $app->post('/api/login', function (Request $request, Response $response, $args) {   
     $err=false;
-    $inputJSON = file_get_contents('php://input');
-    $body = json_decode( $inputJSON, TRUE );
+    $body = $request->getParsedBody();
     $login = $body ['login'] ?? "";
-    $password = $body ['password'] ?? "";
+    $pass = $body ['pass'] ?? "";
 
-    // if (!preg_match("/[a-zA-Z0-9]{1,20}/",$login))   {
-    //     $err = true;
-    // }
-    // if (!preg_match("/[a-zA-Z0-9]{1,20}/",$pass))  {
-    //     $err=true;
-    // }
+    if (!preg_match("/[a-zA-Z0-9]{1,20}/",$login) || empty($login)) {
+        $err = true;
+    }
+    if (!preg_match("/[a-zA-Z0-9]{1,20}/",$pass) || empty($pass))  {
+        $err=true;
+    }
 
     if (!$err) {
             $response = createJwT ($response);
-            $data = array('nom' => $login, 'prenom' => $password);
+            $data = array('nom' => 'toto', 'prenom' => 'titi');
             $response->getBody()->write(json_encode($data));
      } else {          
             $response = $response->withStatus(401);
