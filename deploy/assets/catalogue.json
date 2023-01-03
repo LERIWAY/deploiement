@@ -2,31 +2,37 @@
   {
       "name": "Souris",
       "description":"Logitech Bluetooth",
-      "price": 30
+      "price": 30,
+      "id": "1"
   },
   {
       "name": "Clavier",
       "description":"Razer 500",
-      "price": 60
+      "price": 60,
+      "id": "2"
   },
   {
       "name": "Fleur",
       "description":"Rose",
-      "price": 15
+      "price": 15,
+      "id": "3"
   },
   {
       "name": "Tupperware",
       "description":"Repas à transporter",
-      "price": 20
+      "price": 20,
+      "id": "4"
   },
   {
       "name": "Téléphone",
       "description":"Nokia 600",
-      "price": 100
+      "price": 100,
+      "id": "5"
   },
   {
       "name": "Voiture",
       "description":"Peugeot 308",
-      "price": 5000
+      "price": 5000,
+      "id": "6"
   }
 ]
