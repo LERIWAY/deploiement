@@ -25,20 +25,19 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     $login = $body ['login'] ?? "";
     $password = $body ['password'] ?? "";
 
-    // if (!preg_match("/[a-zA-Z0-9]{1,20}/",$login))   {
-    //     $err = true;
-    // }
-    // if (!preg_match("/[a-zA-Z0-9]{1,20}/",$pass))  {
-    //     $err=true;
-    // }
-
+    if (empty($login) || empty($password)|| !preg_match("/^[a-zA-Z0-9]+$/", $login) || !preg_match("/^[a-zA-Z0-9]+$/", $password)) {
+        $err=true;
+    }
+ 
     if (!$err) {
-            $response = createJwT ($response);
-            $data = array('nom' => $login, 'prenom' => $password);
-            $response->getBody()->write(json_encode($data));
-     } else {          
-            $response = $response->withStatus(401);
-     }
+        $response = createJwT($response);
+        $response = addHeaders($response);
+        $data = array('login' => $login);
+        $response->getBody()->write(json_encode($data));
+    }
+    else{          
+        $response = $response->withStatus(401);
+    }
     return $response;
 });
 
@@ -85,6 +84,7 @@ $options = [
     }
 ];
 
+// get products
 $app->get('/api/product', function (Request $request, Response $response, $args) {
     $json = file_get_contents("./mock/catalogue.json");
     $response = addHeaders($response);
