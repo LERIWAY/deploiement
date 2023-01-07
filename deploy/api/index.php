@@ -30,14 +30,12 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     }
  
     if (!$err) {
-        $response = createJwT($response);
-        $response = addHeaders($response);
-        $data = array('login' => $login);
-        $response->getBody()->write(json_encode($data));
-    }
-    else{          
-        $response = $response->withStatus(401);
-    }
+            $response = createJwT ($response);
+            $data = array('login' => $login, 'password' => $password);
+            $response->getBody()->write(json_encode($data));
+     } else {          
+            $response = $response->withStatus(401);
+     }
     return $response;
 });
 
