@@ -44,6 +44,7 @@ $app->get('/api/user', function (Request $request, Response $response, $args) {
     $array = [];
     $array ["nom"] = "AMOCA";
     $array ["prenom"] = "Okkes";
+    global $entityManager;
     $array = $entityManager->getRepository('user')->findAll();
     $response = addHeaders($response);
     $response->getBody()->write(json_encode ($array));
