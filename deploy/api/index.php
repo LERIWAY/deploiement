@@ -44,8 +44,6 @@ $app->get('/api/user', function (Request $request, Response $response, $args) {
     $array = [];
     $array ["nom"] = "AMOCA";
     $array ["prenom"] = "Okkes";
-    global $entityManager;
-    $array = $entityManager->getRepository('user')->findAll();
     $response = addHeaders($response);
     $response->getBody()->write(json_encode ($array));
     return $response;
@@ -89,6 +87,14 @@ $app->get('/api/product', function (Request $request, Response $response, $args)
     $json = file_get_contents("./mock/catalogue.json");
     $response = addHeaders($response);
     $response->getBody()->write($json);
+    return $response;
+});
+
+$app->get('/api/catalogue', function (Request $request, Response $response, $args) {
+    global $entityManager;
+    $products = $entityManager->getRepository('catalogue')->findAll();
+    $response = addHeaders($response);
+    $response->getBody()->write(json_encode ($products));
     return $response;
 });
 
