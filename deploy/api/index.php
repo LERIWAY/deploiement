@@ -30,7 +30,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     }
  
     if (!$err) {
-            $response = createJwT ($response);
+            $response = createJwT ($response , $login, $password);
             $data = array('login' => $login, 'password' => $password);
             $response->getBody()->write(json_encode($data));
      } else {          
@@ -49,14 +49,13 @@ $app->get('/api/user', function (Request $request, Response $response, $args) {
     return $response;
 });
 
-function createJwT (Response $response) : Response {
+function createJwT (Response $response, $login, $password) : Response {
 
     $issuedAt = time();
     $expirationTime = $issuedAt + 6000;
     $payload = array(
-    'userid' => '1',
-    'email' => 'okkes2001@hotmail.fr',
-    'pseudo' => 'leriway',
+    'login' => $login,
+    'password' => $password,
     'iat' => $issuedAt,
     'exp' => $expirationTime
     );
@@ -101,7 +100,6 @@ function  addHeaders (Response $response) : Response {
 }
 
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
-    $response = createJwT ($response);
     global $entityManager;
     $products = $entityManager->getRepository('catalogue')->findAll();
     $response = addHeaders($response);
