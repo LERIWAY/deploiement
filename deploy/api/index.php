@@ -25,9 +25,9 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     $login = $body ['login'] ?? "";
     $password = $body ['password'] ?? "";
 
-    if (empty($login) || empty($password)|| !preg_match("/^[a-zA-Z0-9]+$/", $login) || !preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-        $err=true;
-    }
+    // if (empty($login) || empty($password)|| !preg_match("/^[a-zA-Z0-9]+$/", $login) || !preg_match("/^[a-zA-Z0-9]+$/", $password)) {
+    //     $err=true;
+    // }
  
     if (!$err) {
             $response = createJwT ($response , $login, $password);
@@ -52,7 +52,7 @@ $app->get('/api/user', function (Request $request, Response $response, $args) {
 function createJwT (Response $response, $login, $password) : Response {
 
     $issuedAt = time();
-    $expirationTime = $issuedAt + 6000;
+    $expirationTime = $issuedAt + 700;
     $payload = array(
     'login' => $login,
     'password' => $password,
