@@ -91,6 +91,7 @@ $app->get('/api/product', function (Request $request, Response $response, $args)
 });
 
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
+    $response = createJwT ($response);
     global $entityManager;
     $products = $entityManager->getRepository('catalogue')->findAll();
     $response = addHeaders($response);
