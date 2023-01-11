@@ -90,6 +90,16 @@ $app->get('/api/product', function (Request $request, Response $response, $args)
     return $response;
 });
 
+function  addHeaders (Response $response) : Response {
+    $response = $response
+    ->withHeader("Content-Type", "application/json")
+    ->withHeader('Access-Control-Allow-Origin', ('https://deploy-b6a9.onrender.com'))
+    ->withHeader('Access-Control-Allow-Headers', 'Content-Type,  Authorization')
+    ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+    ->withHeader('Access-Control-Expose-Headers', 'Authorization');
+    return $response;
+}
+
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
     $response = createJwT ($response);
     global $entityManager;
