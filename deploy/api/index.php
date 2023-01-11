@@ -6,9 +6,10 @@ use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
 require __DIR__ . '/../vendor/autoload.php';
  
-const JWT_SECRET = "makey1234567";
-
 $app = AppFactory::create();
+const JWT_SECRET = "leriway123";
+$app->addErrorMiddleware(true, true, true);
+
 
 $app->get('/api/hello/{name}', function (Request $request, Response $response, $args) {
     $array = [];
@@ -31,6 +32,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
  
     if (!$err) {
             $response = createJwT ($response , $login, $password);
+            $response = addHeaders($response);
             $data = array('login' => $login, 'password' => $password);
             $response->getBody()->write(json_encode($data));
      } else {          
