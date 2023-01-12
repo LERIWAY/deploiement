@@ -49,7 +49,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     return $response;
 });
 
-$app->post('/api/signup', function (Request $request, Response $response, $args) {
+$app->put('/api/signup', function (Request $request, Response $response, $args) {
     $inputJSON = file_get_contents('php://input');
     $body = json_decode( $inputJSON, true ); 
 
