@@ -5,6 +5,8 @@ use Slim\Factory\AppFactory;
 use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/src/User.php';
+require __DIR__ . '/src/Catalogue.php';
  
 $app = AppFactory::create();
 const JWT_SECRET = "leriway123";
@@ -75,7 +77,7 @@ $options = [
     "algorithm" => ["HS256"],
     "secret" => JWT_SECRET,
     "path" => ["/api"],
-    "ignore" => ["/api/hello","/api/login","/api/createUser"],
+    "ignore" => ["/api/hello","/api/login","/api/createUser", "/api/catalogue"],
     "error" => function ($response, $arguments) {
         $data = array('ERREUR' => 'Connexion', 'ERREUR' => 'JWT Non valide');
         $response = $response->withStatus(401);
@@ -103,7 +105,7 @@ function  addHeaders (Response $response) : Response {
 
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
     global $entityManager;
-    $products = $entityManager->getRepository('catalogue')->findAll();
+    $products = $entityManager->getRepository(Catalogue::class)->findAll();
     $response = addHeaders($response);
     $response->getBody()->write(json_encode ($products));
     return $response;
