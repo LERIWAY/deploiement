@@ -44,8 +44,34 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
      } 
      else {
         $response = $response->withStatus(401);
-        alert('Identifiant ou mot de passe incorrect ! NB : Essayez root / root');
      }
+    return $response;
+});
+
+$app->post('/api/signup', function (Request $request, Response $response, $args) {
+    $inputJSON = file_get_contents('php://input');
+    $body = json_decode( $inputJSON, true ); 
+
+    $login = $body['login'] ;
+    $password = $body['password'] ;
+    $err=false;
+
+    if ($err == false) {
+        global $entityManager;
+        $client = new Client;
+
+        $client->setLogin($login);
+        $client->setPassword($password);
+
+        $entityManager->persist($client);
+        $entityManager->flush();
+        
+        $response = addHeaders($response);
+        $response->getBody()->write(json_encode ($client));
+    }
+    else{          
+        $response = $response->withStatus(401);
+    }
     return $response;
 });
 
@@ -83,7 +109,7 @@ $options = [
     "algorithm" => ["HS256"],
     "secret" => JWT_SECRET,
     "path" => ["/api"],
-    "ignore" => ["/api/hello","/api/login","/api/createUser", "/api/catalogue"],
+    "ignore" => ["/api/hello","/api/login","/api/signup", "/api/catalogue"],
     "error" => function ($response, $arguments) {
         $data = array('ERREUR' => 'Connexion', 'ERREUR' => 'JWT Non valide');
         $response = $response->withStatus(401);
