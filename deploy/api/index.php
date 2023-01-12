@@ -5,8 +5,8 @@ use Slim\Factory\AppFactory;
 use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/src/User.php';
-require __DIR__ . '/src/Catalogue.php';
+require __DIR__ . '../src/User.php';
+require __DIR__ . '../src/Catalogue.php';
  
 $app = AppFactory::create();
 const JWT_SECRET = "leriway123";
