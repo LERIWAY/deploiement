@@ -34,7 +34,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     }
 
     global $entityManager;
-    $user = $entityManager->getRepository('User')->findOneBy(array('login' => $login, 'password' => $password));
+    $user = $entityManager->getRepository('user')->findOneBy(array('login' => $login, 'password' => $password));
     $response->getBody()->write(json_encode($user));
  
     if (!$err && $user) {
