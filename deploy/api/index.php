@@ -67,7 +67,7 @@ $app->post('/api/signup', function (Request $request, Response $response, $args)
         $entityManager->flush();
         
         $response = addHeaders($response);
-        $response->getBody()->write(json_encode ($client));
+        $response->getBody()->write(json_encode($client));
     }
     else{          
         $response = $response->withStatus(401);
