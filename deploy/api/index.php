@@ -39,11 +39,12 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     if (!$err && $user) {
             $response = createJwT ($response , $login, $password);
             $response = addHeaders($response);
-            $data = array('login' => $login, 'password' => $password);
+            $data = array('login' => $login);
             $response->getBody()->write(json_encode($data));
      } 
      else {
         $response = $response->withStatus(401);
+        alert('Identifiant ou mot de passe incorrect ! NB : Essayez root / root');
      }
     return $response;
 });
