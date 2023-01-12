@@ -51,7 +51,7 @@
         "name": "Apple Watch 8",
         "description": "Une affaire de cœur.Trois élégants coloris de boîtier. De puissants capteurs pour davantage de données sur votre forme et votre santé. Des fonctionnalités de sécurité innovantes. Des moyens pratiques de rester en contact. Un processeur bicœur plus rapide pour des performances améliorées.Encore une minute.App Cartes. Gardez vos cartes d’embarquement, vos tickets de cinéma ou vos cartes de fidélité toujours à portée de main.Localiser vos appareils, vos proches, ou des objets égarés.",
         "price": 499,
-        "id": "6",
+        "id": "7",
         "status": false,
         "image": "https://static.fnac-static.com/multimedia/Images/FR/MDM/b5/af/31/20033461/1540-1/tsp20230107150808/Apple-Watch-Series-8-GPS-boitier-Aluminium-Lumiere-Stellaire-41mm-avec-Bracelet-Lumiere-Stellaire.jpg"
     },
@@ -59,7 +59,7 @@
         "name": "Apple iMac 24",
         "description": "Sept teintes, sept possibilités. Premier système sur puce conçu pour Mac, la puce M1 est l’élément qui a rendu possible ce design extraordinaire. L’iMac en devient tellement fin et compact qu’il trouve sa place partout. La puce M1 réunit le processeur, la carte graphique, la mémoire et plus encore. C’est grâce à elle qu’il a été possible de faire tenir un ordinateur tout entier dans un espace si étroit.Plein la vue. Et plein de détails.",
         "price": 1449,
-        "id": "6",
+        "id": "8",
         "status": false,
         "image": "https://static.fnac-static.com/multimedia/Images/FR/MDM/5d/24/e2/14820445/1541-2/tsp20230107003834/Apple-iMac-24-512-Go-D-8-Go-RAM-Puce-M1-CPU-8-coeurs-GPU-8-coeurs-Jaune-Mi-2021.jpg"
     }
