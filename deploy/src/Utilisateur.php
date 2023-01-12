@@ -15,10 +15,17 @@ class Utilisateur implements \JsonSerializable
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="text")
+     * @ORM\Column(name="id", type="text")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="Utilisateur_login_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="Utilisateur_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="text", nullable=false)
      */
     private $login;
 
@@ -28,6 +35,30 @@ class Utilisateur implements \JsonSerializable
      * @ORM\Column(name="password", type="text", nullable=false)
      */
     private $password;
+
+    /**
+     * Get id.
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set login.
+     *
+     * @param string $login
+     *
+     * @return Utilisateur
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
 
     /**
      * Get login.
