@@ -33,8 +33,8 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     //     $err=true;
     // }
 
-    global $entityManager;
-    $user = $entityManager->getRepository('user')->findOneBy(array('login' => $login, 'password' => $password));
+    // global $entityManager;
+    // $user = $entityManager->getRepository('user')->findOneBy(array('login' => $login, 'password' => $password));
         
     if (!$err && $user) {
             $response = createJwT ($response , $login, $password);
