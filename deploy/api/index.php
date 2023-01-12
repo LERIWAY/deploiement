@@ -107,9 +107,10 @@ function  addHeaders (Response $response) : Response {
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
     global $entityManager;
     $products = $entityManager->getRepository('Catalogue')->findAll();
+    var_dump($products);
     $response = addHeaders($response);
     $response->getBody()->write(json_encode ($products));
-    return $response;
+    return $response; //oui
 });
 
 $app->add(new Tuupola\Middleware\JwtAuthentication($options));
