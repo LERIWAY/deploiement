@@ -106,7 +106,7 @@ function  addHeaders (Response $response) : Response {
 
 $app->get('/api/catalogue', function (Request $request, Response $response, $args) {
     global $entityManager;
-    $products = $entityManager->getRepository('catalogue')->findAll();
+    $products = $entityManager->getRepository('Catalogue')->findAll();
     $response = addHeaders($response);
     $response->getBody()->write(json_encode ($products));
     return $response;
