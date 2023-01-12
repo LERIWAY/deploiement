@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../bootstrap.php';
 require __DIR__ . '/../src/Utilisateur.php';
 require __DIR__ . '/../src/Catalogue.php';
+require __DIR__ . '/../src/Formulairecontact.php';
  
 $app = AppFactory::create();
 const JWT_SECRET = "leriway123";
@@ -110,7 +111,7 @@ $options = [
     "algorithm" => ["HS256"],
     "secret" => JWT_SECRET,
     "path" => ["/api"],
-    "ignore" => ["/api/hello","/api/login","/api/signup", "/api/catalogue", "/api/signup"],
+    "ignore" => ["/api/hello","/api/login","/api/signup", "/api/catalogue", "/api/signup", "/api/formulairecontact"],
     "error" => function ($response, $arguments) {
         $data = array('ERREUR' => 'Connexion', 'ERREUR' => 'JWT Non valide');
         $response = $response->withStatus(401);
@@ -142,6 +143,47 @@ $app->get('/api/catalogue', function (Request $request, Response $response, $arg
     $response = addHeaders($response);
     $response->getBody()->write(json_encode($products));
     return $response;
+});
+
+$app->put('/api/formulairecontact', function (Request $request, Response $response, $args) {
+    $inputJSON = file_get_contents('php://input');
+    $body = json_decode( $inputJSON, true ); 
+
+    $nom = $body['nom'] ; 
+    $prenom = $body['prenom'] ;
+    $adresse = $body['adresse'] ;
+    $cp = $body['cp'] ;
+    $pays = $body['pays'] ;
+    $ville = $body['ville'] ;
+    $tel = $body['tel'] ;
+    $email = $body['email'] ;
+    $genre = $body['genre'] ;
+    $login = $body['login'] ;
+    $password = $body['password'] ;
+
+    $err=false;
+
+    if ($err == false) {
+        global $entityManager;
+        $contact = new Formulairecontact;
+        $contact->setNom[$nom];
+        $contact->setPrenom[$prenom];
+        $contact->setAdresse[$adresse];
+        $contact->setCp[$cp];
+        $contact->setPays[$pays];
+        $contact->setVille[$ville];
+        $contact->setTel[$tel];
+        $contact->setEmail[$email];
+        $contact->setGenre[$genre];
+        $contact->setLogin[$login];
+        $contact->setPassword[$password];
+
+        $entityManager->persist($contact);
+        $entityManager->flush();
+        $response = addHeaders($response);
+        $response->getBody()->write(json_encode ($contact));
+        return $response;
+    }
 });
 
 $app->add(new Tuupola\Middleware\JwtAuthentication($options));
