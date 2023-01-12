@@ -7,18 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Utilisateur
  *
- * @ORM\Table(name="Utilisateur")
+ * @ORM\Table(name="utilisateur")
  * @ORM\Entity
  */
 class Utilisateur implements \JsonSerializable
 {
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="id", type="text")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="Utilisateur_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="utilisateur_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
@@ -36,10 +36,11 @@ class Utilisateur implements \JsonSerializable
      */
     private $password;
 
+
     /**
      * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -101,7 +102,6 @@ class Utilisateur implements \JsonSerializable
      */
     public function jsonSerialize() {
         $vars = get_object_vars($this);
-        unset($vars['password']);
         return $vars;
     }
 }
