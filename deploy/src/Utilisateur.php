@@ -5,12 +5,12 @@
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * Utilisateur
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="Utilisateur")
  * @ORM\Entity
  */
-class User implements \JsonSerializable
+class Utilisateur implements \JsonSerializable
 {
     /**
      * @var string
@@ -18,7 +18,7 @@ class User implements \JsonSerializable
      * @ORM\Column(name="login", type="text")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="user_login_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="Utilisateur_login_seq", allocationSize=1, initialValue=1)
      */
     private $login;
 
@@ -44,7 +44,7 @@ class User implements \JsonSerializable
      *
      * @param string $password
      *
-     * @return User
+     * @return Utilisateur
      */
     public function setPassword($password)
     {

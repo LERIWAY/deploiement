@@ -6,7 +6,7 @@ use Tuupola\Middleware\HttpBasicAuthentication;
 use \Firebase\JWT\JWT;
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../bootstrap.php';
-require __DIR__ . '/../src/User.php';
+require __DIR__ . '/../src/Utilisateur.php';
 require __DIR__ . '/../src/Catalogue.php';
  
 $app = AppFactory::create();
@@ -34,7 +34,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     }
 
     global $entityManager;
-    $user = $entityManager->getRepository('utilisateur')->findOneBy(array('login' => $login, 'password' => $password));
+    $user = $entityManager->getRepository('Utilisateur')->findOneBy(array('login' => $login, 'password' => $password));
 
     if (!$err && $user) {
             $response = createJwT ($response , $login, $password);
