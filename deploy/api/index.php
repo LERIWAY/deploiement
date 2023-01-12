@@ -58,16 +58,16 @@ $app->post('/api/signup', function (Request $request, Response $response, $args)
 
     if ($err == false) {
         global $entityManager;
-        $client = new Client;
+        $utilisateur = new Utilisateur;
 
-        $client->setLogin($login);
-        $client->setPassword($password);
+        $utilisateur->setLogin($login);
+        $utilisateur->setPassword($password);
 
-        $entityManager->persist($client);
+        $entityManager->persist($utilisateur);
         $entityManager->flush();
         
         $response = addHeaders($response);
-        $response->getBody()->write(json_encode($client));
+        $response->getBody()->write(json_encode($utilisateur));
     }
     else{          
         $response = $response->withStatus(401);
