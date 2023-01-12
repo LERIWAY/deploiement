@@ -35,7 +35,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
 
     global $entityManager;
     $user = $entityManager->getRepository('User')->findOneBy(array('login' => $login, 'password' => $password));
-    var_dump($user);
+    $response->getBody()->write(json_encode($user));
  
     if (!$err && $user) {
             $response = createJwT ($response , $login, $password);
