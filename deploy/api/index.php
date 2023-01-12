@@ -29,14 +29,13 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     $login = $body ['login'] ?? "";
     $password = $body ['password'] ?? "";
 
-    if (empty($login) || empty($password)|| !preg_match("/^[a-zA-Z0-9]+$/", $login) || !preg_match("/^[a-zA-Z0-9]+$/", $password)) {
-        $err=true;
-    }
+    // if (empty($login) || empty($password)|| !preg_match("/^[a-zA-Z0-9]+$/", $login) || !preg_match("/^[a-zA-Z0-9]+$/", $password)) {
+    //     $err=true;
+    // }
 
     global $entityManager;
     $user = $entityManager->getRepository('user')->findOneBy(array('login' => $login, 'password' => $password));
-    $response->getBody()->write(json_encode($user));
- 
+        
     if (!$err && $user) {
             $response = createJwT ($response , $login, $password);
             $response = addHeaders($response);
